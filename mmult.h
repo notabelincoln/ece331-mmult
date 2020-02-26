@@ -16,6 +16,3 @@ struct matrix {
 // multiplies two matricies a and b and returns a pointer to new matrix c
 struct matrix *mmult(const struct matrix *a, const struct matrix *b);
 #endif
-
-
-

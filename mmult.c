@@ -1,13 +1,17 @@
 // Abe Jordan	2/22/20	mmult.c
 
 // Multiplies matrix A (am x ambn) by matrix B (anbm x bn)
-struct matrix *mmult(const int32_t *a, const int32_t *b, const uint32_t am,
-				 const uint32_t anbm, const uint32_t bn)
+struct matrix *mmult(const struct matrix *a, const struct matrix *b)
 {
-	int32_t *matrixc, *ptra0,*ptrb0;
-	matrixc = int32_t *calloc(ar * bc, sizeof(int32_t));
-	for (int32_t i = 0; i < a_rows; i++) {
-		for (int32_t j = 0; j < ac; j++)
-			matrixc[i][j] = component_result(&a[i][0], &b[0][j], am, bn);
-	}
+	// initialize matrix c to NULL pointer so it does not point to garbage
+	struct matrix *c = NULL;
+	// set the correct size parameters for matrix c
+	c->m_rows = a->m_rows;
+	c->n_columns = b->n_columns;
+	// create array of pointers for matrix c
+	c->row = calloc(c->m_rows, sizeof(int32_t));
+	// creates a set of columns for each row
+	for (int i = 0; i < (c->m_rows); i++)
+		(c->row + i) = calloc(c->n_columns, sizeof(int32_t));
+
 }
