@@ -5,9 +5,9 @@
 #ifndef MMULT_H
 #define MMULT_H
 struct matrix {
-	// m_rows and n_columns are size parameters of the matrix
-	uint32_t m_rows;
-	uint32_t n_columns;
+	// m number of rows, n number of columns
+	uint32_t m;
+	uint32_t n;
 	int32_t *array;
 }
 // multiplies two matricies a and b and returns a pointer to new matrix c
