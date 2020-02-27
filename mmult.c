@@ -2,18 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-struct matrix {
-	uint32_t m, n;
-	int32_t *array;
-};
+#include "mmult.h"
 /*
  * Multiplies matrix a by matrix b to produce matrix c, returns null pointer
  * if the two matrices cannot be multiplied.
  */
-struct matrix *mmult(struct matrix *a, struct matrix *b)
+struct matrix *mmult(const struct matrix *a, const struct matrix *b)
 {
-	// Pointer to new matrix
-	struct matrix *c = (struct matrix *)malloc(sizeof(struct matrix));
+	// Pointer to resulting matrix
+	struct matrix *c;
 	// Pointers to the elements in matrices a, b, c 
 	int32_t *arow, *bcol, *celmnt;
 	
@@ -22,10 +19,12 @@ struct matrix *mmult(struct matrix *a, struct matrix *b)
 		printf("ERROR: invalid dimensions\n");
 		return 0;
 	} else if (a->n != b->m) {
-		printf("ERROR: inappropriate dimensions");
+		printf("ERROR: inappropriate dimensions\n");
 		return 0;
 	}
 	
+	c = (struct matrix *)malloc(sizeof(struct matrix));
+
 	// Set the correct size parameters for matrix c
 	c->m = a->m;
 	c->n = b->n;
@@ -42,7 +41,7 @@ struct matrix *mmult(struct matrix *a, struct matrix *b)
 	for (int i = 0; i < (c->m); i++) {
 		for (int j = 0; j < (c->n); j++) {
 			for (int k = 0; k < (a->n); k++)
-				*celmnt += *(arow + k) * *(bcol + (b->n * k));
+				*celmnt += *(arow + k) * *(bcol + b->n * k);
 			celmnt++;
 			bcol++;
 		}
