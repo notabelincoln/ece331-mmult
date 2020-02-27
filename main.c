@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 	uint32_t delta_time;
 	// Used to easily read/write values in matrices
 	int32_t *ptrA, *ptrB, *ptrC;
+	// Seed for the random matrix creation, different every time
 	srand(time(0));
 
 	// Allocate space for each of the matrices
