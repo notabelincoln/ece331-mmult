@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 	struct matrix *a, *b, *c;
 	struct timespec begin, end;
 	uint32_t delta_time;
-	// Used to easily store values in matrices
+	// Used to easily read/write values in matrices
 	int32_t *ptrA, *ptrB, *ptrC;
 	srand(time(0));
 
@@ -78,5 +78,14 @@ int main(int argc, char *argv[])
 	delta_time = (end.tv_sec - begin.tv_sec) + (end.tv_nsec - begin.tv_nsec);
 
 	printf("TIME TO MULTIPLY MATRIX: %d\n", delta_time);
+	
+	// free the data in each matrix array
+	free(a->array);
+	free(b->array);
+	free(c->array);
+	// free data in each matrix
+	free(a);
+	free(b);
+	free(c);
 	return 0;
 }
