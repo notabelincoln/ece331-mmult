@@ -28,13 +28,19 @@ int main(int argc, char *argv[])
 	b->array = (int32_t *)malloc(b->m * b->n * sizeof(int32_t));
 	
 	for (int i = 0; i < a->m; i++) {
-		for (int j = 0; j < a->n; j++)
-			*(++(a->array)) = rand();
+		for (int j = 0; j < a->n; j++) {
+			*(++(a->array)) = j;
+			printf("%d, ", *(a->array));
+		}
+		printf("\n");
 	}
 
 	for (int i = 0; i < b->m; i++) {
-		for (int j = 0; j < b->n; j++)
-			*(++(b->array)) = rand();
+		for (int j = 0; j < b->n; j++) {
+			*(++(b->array)) = i;
+			printf("%d, ", *(b->array));
+		}
+		printf("\n");
 	}
 
 	c = mmult(a, b);
