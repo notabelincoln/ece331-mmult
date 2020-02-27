@@ -1,6 +1,6 @@
 // Abe Jordan	2/22/20	mmult.c
 
-// Multiplies matrix A (am x ambn) by matrix B (anbm x bn)
+// multiplies matrix A (am x ambn) by matrix B (anbm x bn)
 struct matrix *mmult(const struct matrix *a, const struct matrix *b)
 {
 	// initialize matrix c to NULL pointer so it does not point to garbage
