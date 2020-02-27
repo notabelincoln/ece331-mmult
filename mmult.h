@@ -9,7 +9,7 @@ struct matrix {
 	uint32_t m;
 	uint32_t n;
 	int32_t *array;
-}
+};
 // multiplies two matricies a and b and returns a pointer to new matrix c
 struct matrix *mmult(const struct matrix *a, const struct matrix *b);
 #endif

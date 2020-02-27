@@ -1,10 +1,16 @@
 // Abe Jordan	2/22/20	mmult.c
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+struct matrix {
+	uint32_t m, n;
+	int32_t *array;
+};
 /*
  * Multiplies matrix a by matrix b to produce matrix c, returns null pointer
  * if the two matrices cannot be multiplied.
  */
-struct matrix *mmult(const struct matrix *a, const struct matrix *b)
+struct matrix *mmult(struct matrix *a, struct matrix *b)
 {
 	// Pointer to new matrix
 	struct matrix *c;
@@ -41,7 +47,7 @@ struct matrix *mmult(const struct matrix *a, const struct matrix *b)
 			bcol++;
 		}
 		// Reset bcol to top row of matrix
-		bocl = b->array;
+		bcol = b->array;
 
 		arow += (a->n);
 	}
