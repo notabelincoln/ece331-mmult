@@ -1,48 +1,50 @@
 // Abe Jordan	2/22/20	mmult.c
 
 /*
- * multiplies matrix a by matrix b to produce matrix c, returns null pointer
+ * Multiplies matrix a by matrix b to produce matrix c, returns null pointer
  * if the two matrices cannot be multiplied.
  */
 struct matrix *mmult(const struct matrix *a, const struct matrix *b)
 {
+	// Pointer to new matrix
 	struct matrix *c;
-	// pointers to the elements in matrices a, b, c 
-	int32_t *aelmnt, *belmnt, *celmnt;
+	// Pointers to the elements in matrices a, b, c 
+	int32_t *arow, *bcol, *celmnt;
 	
-	// checks if matrices have invalid or mismatched dimensions
-	if (a->m_rows < 1 || a->n_columns < 1 || b->m_rows < 1 || b->n_columns < 1) {
+	// Checks if matrices have invalid or mismatched dimensions
+	if (a->m < 1 || a->n < 1 || b->m < 1 || b->n < 1) {
 		printf("ERROR: invalid dimensions\n");
 		return 0;
-	} else if (a->n_columns != b->m_rows) {
+	} else if (a->n != b->m) {
 		printf("ERROR: inappropriate dimensions");
 		return 0;
 	}
 	
-	// set the correct size parameters for matrix c
-	c->m_rows = a->m_rows;
-	c->n_columns = b->n_columns;
+	// Set the correct size parameters for matrix c
+	c->m = a->m;
+	c->n = b->n;
 	
-	// create array of pointers for matrix c
-	c->array = (int32_t *)calloc(c->m_rows * c->n_columns, sizeof(int32_t));
+	// Create array of pointers for matrix c
+	c->array = (int32_t *)calloc(c->m * c->n, sizeof(int32_t));
 
-	// initialize the pointers to the beginning of each matrix
-	aelmnt = a->array;
-	belmnt = b->array;
+	// Initialize the pointers to the beginning of each matrix
+	arow = a->array;
+	bcol = b->array;
 	celmnt = c->array;
 
-	// actually produces the multiplied matrix
-	for (int i = 0; i < (c->m_rows); i++) {
-		for (int j = 0; j < (c->n_columns); j++) {
-			for (int k = 0; k < (a->n_columns); k++) {
-				// result is the elements in row a times elements in column b
-				*celmnt += *(aelmnt + k);
-				*celmnt *= *(belmnt + (b->n_columns * k)); 
-					*(belmnt +(b->n_columns * k));
-			ccol++;
+	// Actually produces the multiplied matrix
+	for (int i = 0; i < (c->m); i++) {
+		for (int j = 0; j < (c->n); j++) {
+			for (int k = 0; k < (a->n); k++)
+				*celmnt += *(arow + k) * *(bcol + (b->n * k));
+			celmnt++;
 			bcol++;
 		}
-		arow += (a->n_columns);
+		// Reset bcol to top row of matrix
+		bocl = b->array;
+
+		arow += (a->n);
 	}
 
+	return c;
 }
