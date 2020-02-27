@@ -15,6 +15,12 @@ int main(int argc, char *argv[])
 	int32_t *ptrA, *ptrB, *ptrC;
 	// Seed for the random matrix creation, different every time
 	srand(time(0));
+	
+	// Ensure correct number of argumetns passed
+	if (argc < 4) {
+		printf("USAGE: ./mmult (a rows) (a columns) (b rows) (b columns)\n")
+		return 1;
+	}
 
 	// Allocate space for each of the matrices
 	a = (struct matrix *)malloc(sizeof(struct matrix));
@@ -27,10 +33,6 @@ int main(int argc, char *argv[])
 	b->m = atoi(argv[3]);
 	b->n = atoi(argv[4]);
 
-	if (argc < 4) {
-		printf("USAGE: ./mmult (a rows) (a columns) (b rows) (b columns)\n")
-		return 1;
-	}
 	// Create pointers to matrix a and matrix b
 	a->array = (int32_t *)calloc(a->m * a->n, sizeof(int32_t));
 	b->array = (int32_t *)calloc(b->m * b->n, sizeof(int32_t));
