@@ -13,7 +13,7 @@ struct matrix {
 struct matrix *mmult(struct matrix *a, struct matrix *b)
 {
 	// Pointer to new matrix
-	struct matrix *c;
+	struct matrix *c = (struct matrix *)malloc(sizeof(struct matrix));
 	// Pointers to the elements in matrices a, b, c 
 	int32_t *arow, *bcol, *celmnt;
 	
