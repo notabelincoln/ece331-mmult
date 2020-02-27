@@ -78,7 +78,6 @@ int main(int argc, char *argv[])
 	ptrC = c->array;
 	
 	// Prints array c
-	
 	printf("MATRIX C:\n");
 	for (int i = 0; i < c->m; i++) {
 		for (int j = 0; j < c->n; j++) {
@@ -91,13 +90,13 @@ int main(int argc, char *argv[])
 
 	printf("TIME TO MULTIPLY MATRIX: %d\n", delta_time);
 	
-	// free the data in each matrix array
+	// free the data in each matrix
 	free(a->array);
 	free(b->array);
 	free(c->array);
-	// free data in each matrix
 	free(a);
 	free(b);
 	free(c);
+	
 	return 0;
 }
