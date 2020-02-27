@@ -27,6 +27,10 @@ int main(int argc, char *argv[])
 	b->m = atoi(argv[3]);
 	b->n = atoi(argv[4]);
 
+	if (argc < 4) {
+		printf("USAGE: ./mmult (a rows) (a columns) (b rows) (b columns)\n")
+		return 1;
+	}
 	// Create pointers to matrix a and matrix b
 	a->array = (int32_t *)calloc(a->m * a->n, sizeof(int32_t));
 	b->array = (int32_t *)calloc(b->m * b->n, sizeof(int32_t));
@@ -61,8 +65,13 @@ int main(int argc, char *argv[])
 	c = mmult(a, b);
 	clock_gettime(CLOCK_REALTIME, &end);
 
-	if (c == 0)
-		return 1;
+	if (c == 0) {
+		free(a->array);
+		free(b->array);
+		free(a);
+		free(b);
+		return 2;
+	}
 
 	ptrC = c->array;
 	
