@@ -23,11 +23,25 @@ int main(int argc, char *argv[])
 	b->m = atoi(argv[3]);
 	b->n = atoi(argv[4]);
 
-	// create pointers to 
+	// create pointers to matrix a and matrix b
 	a->array = (int32_t *)malloc(a->m * a->n * sizeof(int32_t));
 	b->array = (int32_t *)malloc(b->m * b->n * sizeof(int32_t));
 	
+	for (int i = 0; i < a->m; i++) {
+		for (int j = 0; j < a->n; j++)
+			*(++(a->array)) = rand();
+	}
+
+	for (int i = 0; i < b->m; i++) {
+		for (int j = 0; j < b->n; j++)
+			*(++(b->array)) = rand();
+	}
+
 	c = mmult(a, b);
+
+	if (c == 0)
+		return 1;
+
 	clock_gettime(CLOCK_REALTIME, &begin);
 	for (int i = 0; i < c->m; i++) {
 		for (int j = 0; j < c->n; j++)
@@ -35,7 +49,8 @@ int main(int argc, char *argv[])
 		printf("\n");
 	}
 	clock_gettime(CLOCK_REALTIME, &end);
-	delta_time = /*(end.tv_sec - begin.tv_sec)*/ + (end.tv_nsec - begin.tv_nsec);
+	delta_time = (end.tv_sec - begin.tv_sec) + (end.tv_nsec - begin.tv_nsec);
 
 	printf("TIME TO MULTIPLY MATRIX: %d\n", delta_time);
+	return 0;
 }
