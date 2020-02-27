@@ -16,8 +16,8 @@ int main(int argc, char *argv[])
 	// Seed for the random matrix creation, different every time
 	srand(time(0));
 	
-	// Ensure correct number of argumetns passed
-	if (argc < 4) {
+	// Ensure correct number of arguments passed
+	if (argc != 5) {
 		printf("USAGE: ./mmult (a rows) (a columns) (b rows) (b columns)\n")
 		return 1;
 	}
