@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 	uint32_t delta_time;
 	// Used to easily store values in matrices
 	int32_t *ptrA, *ptrB, *ptrC;
+	srand(time(0));
 
 	// Allocate space for each of the matrices
 	a = (struct matrix *)malloc(sizeof(struct matrix));
@@ -36,8 +37,8 @@ int main(int argc, char *argv[])
 	printf("MATRIX A:\n");
 	for (int i = 0; i < a->m; i++) {
 		for (int j = 0; j < a->n; j++) {
-			*ptrA = (rand() % 3);
-			printf("%d, ", *ptrA);
+			*ptrA = (rand());
+			printf("%d ", *ptrA);
 			ptrA++;
 		}
 		printf("\n");
@@ -47,8 +48,8 @@ int main(int argc, char *argv[])
 	printf("MATRIX B:\n");
 	for (int i = 0; i < b->m; i++) {
 		for (int j = 0; j < b->n; j++) {
-			*ptrB = (rand() % 3);
-			printf("%d, ", *ptrB);
+			*ptrB = (rand());
+			printf("%d ", *ptrB);
 			ptrB++;
 		}
 		printf("\n");
@@ -69,7 +70,7 @@ int main(int argc, char *argv[])
 	printf("MATRIX C:\n");
 	for (int i = 0; i < c->m; i++) {
 		for (int j = 0; j < c->n; j++) {
-			printf("%d, ", *ptrC);
+			printf("%d ", *ptrC);
 			ptrC++;
 		}
 		printf("\n");
